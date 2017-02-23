@@ -201,7 +201,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n gitweb
 %defattr(-,root,root)
-%doc gitweb/README.md gitweb/INSTALL Documentation/*gitweb*.txt
+%doc gitweb/README gitweb/INSTALL Documentation/*gitweb*.txt
 %{_datadir}/gitweb
 %{!?_without_docs: %{_mandir}/man1/*gitweb*.1*}
 %{!?_without_docs: %{_mandir}/man5/*gitweb*.5*}
