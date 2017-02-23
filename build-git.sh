@@ -1,9 +1,63 @@
 #!/bin/bash
 
+check_packages()
+{
+	l=`gcc -v 2>&1 > /dev/null`
+	if [ $? -ne 0 ]; then
+		echo "GCC Compiler not found"
+		exit 220
+	fi
+	
+	l=`wget --version 2>&1 > /dev/null`
+	if [ $? -ne 0 ]; then
+		echo "Python not found"
+		exit 220
+	fi
+	
+	l=`python --version 2>&1 > /dev/null`
+	if [ $? -ne 0 ]; then
+		echo "Python not found"
+		exit 220
+	fi
+	
+	l=`perl --version 2>&1 > /dev/null`
+	if [ $? -ne 0 ]; then
+		echo "Perl not found"
+		exit 220
+	fi
+	
+	l=`curl --version 2>&1 > /dev/null`
+	if [ $? -ne 0 ]; then
+		echo "Curl not found"
+		exit 220
+	fi
+	
+	l=`autoconf --version 2>&1 > /dev/null`
+	if [ $? -ne 0 ]; then
+		echo "Autoconf not found"
+		exit 220
+	fi
+	
+	l=`make --version 2>&1 > /dev/null`
+	if [ $? -ne 0 ]; then
+		echo "Make not found"
+		exit 220
+	fi
+	
+	l=`gettext --version 2>&1 > /dev/null`
+	if [ $? -ne 0 ]; then
+		echo "gettext not found"
+		exit 220
+	fi
+	
+}
+
 if [ -z $1 ]; then
 	echo "No version given"
 	exit 1
 fi
+
+check_packages
 
 VERSION=$1
 DEST=`pwd`/git-${VERSION}-bin
